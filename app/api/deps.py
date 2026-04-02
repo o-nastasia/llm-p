@@ -32,8 +32,7 @@ async def get_chat(message_repo: MessageRepo = Depends(get_message_repo), openro
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
-async def get_current_user_id(
-    token: str = Depends(oauth2_scheme)) -> int:
+async def get_current_user_id(token: str = Depends(oauth2_scheme)) -> int:
     try:
         payload = decode_token(token)
         user_id = payload.get("sub")

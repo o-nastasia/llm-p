@@ -1,4 +1,4 @@
-from fastapi import APIRouter, OAuth2PasswordRequestForm, Depends
+from fastapi import APIRouter, Depends
 from app.schemas.chat import ChatRequest, ChatResponse, ChatHistoryResponse
 from app.usecases.chat import ChatUseCase
 from app.api.deps import get_chat, get_current_user_id

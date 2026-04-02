@@ -1,4 +1,5 @@
-from fastapi import APIRouter, OAuth2PasswordRequestForm, Depends
+from fastapi import APIRouter, Depends
+from fastapi.security import OAuth2PasswordRequestForm
 from app.schemas.auth import RegisterRequest, TokenResponse
 from app.schemas.user import UserPublic
 from app.usecases.auth import AuthUseCase

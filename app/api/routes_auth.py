@@ -5,7 +5,7 @@ from app.schemas.user import UserPublic
 from app.usecases.auth import AuthUseCase
 from app.api.deps import get_auth, get_current_user_id
 
-router = APIRouter(prefix="/auth")
+router = APIRouter()
 
 @router.post("/register", response_model=UserPublic)
 async def register(request: RegisterRequest, auth_usecase: AuthUseCase = Depends(get_auth)) -> UserPublic:

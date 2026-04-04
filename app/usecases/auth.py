@@ -25,7 +25,7 @@ class AuthUseCase:
                 message="Неверный логин или пароль",
             )
         
-        access_token = create_access_token(user.email, user.role.value)
+        access_token = create_access_token(str(user.id), user.role)
 
         return TokenResponse(access_token=access_token)
     

@@ -14,7 +14,7 @@ class OpenRouterClient:
         }
 
     async def chat_completion(self, messages: list[dict], temperature: float = 0.7) -> str:
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(timeout=60.0) as client:
             response = await client.post(
                 f"{self.base_url}/chat/completions",
                 headers=self.headers,

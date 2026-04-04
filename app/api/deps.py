@@ -10,6 +10,7 @@ from app.usecases.chat import ChatUseCase
 from app.services.openrouter_client import OpenRouterClient
 
 async def get_db_session():
+    """Создает и закрывает сессию базы данных для каждого запроса."""
     session = AsyncSessionLocal()
     try:
         yield session
@@ -34,6 +35,7 @@ async def get_chat(message_repo: MessageRepo = Depends(get_message_repo), openro
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 async def get_current_user_id(token: str = Depends(oauth2_scheme)) -> int:
+    """Извлекает user_id из JWT токена."""
     try:
         payload = decode_token(token)
         user_id = payload.get("sub")

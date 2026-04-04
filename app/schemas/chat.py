@@ -11,4 +11,4 @@ class ChatResponse(BaseModel):
 
 class ChatHistoryResponse(BaseModel):
     role: str
-    message: str
+    content: str

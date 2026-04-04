@@ -4,6 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
 
 class User(Base):
+    """Модель пользователя."""
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
@@ -14,6 +15,7 @@ class User(Base):
     messages: Mapped[list["ChatMessage"]] = relationship("ChatMessage", back_populates="user", cascade="all, delete-orphan")
 
 class ChatMessage(Base):
+    """Модель сообщения чата."""
     __tablename__ = "chatmessage"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)

@@ -5,10 +5,12 @@ from app.core.errors import ConflictError, AuthentificationError, NotFoundError
 from app.schemas.user import UserPublic
 
 class AuthUseCase:
+    """Бизнес-логика аутентификации."""
     def __init__(self, user_repo: UserRepo) -> None:
         self.user_repo = user_repo
     
     async def register(self, email: str, password: str) -> UserPublic:
+        """Регистрация нового пользователя."""
         if await self.user_repo.get_user_by_email(email):
             raise ConflictError(
                 message="Пользователь с таким email-ом уже существует",
@@ -19,6 +21,7 @@ class AuthUseCase:
         return UserPublic.model_validate(user)
 
     async def login(self, email: str, password: str) -> TokenResponse:
+        """Аутентификация и выдача токена."""
         user = await self.user_repo.get_user_by_email(email)
         if user is None or not verify_password(password, user.password_hash):
             raise AuthentificationError(
@@ -30,6 +33,7 @@ class AuthUseCase:
         return TokenResponse(access_token=access_token)
     
     async def user_by_id(self, id: int) -> UserPublic:
+        """Получение пользователя по id."""
         user = await self.user_repo.get_user_by_id(id)
         if user is None:
             raise NotFoundError(

@@ -9,15 +9,18 @@ router = APIRouter()
 
 @router.post("/register", response_model=UserPublic)
 async def register(request: RegisterRequest, auth_usecase: AuthUseCase = Depends(get_auth)) -> UserPublic:
+    """Регистрация нового пользователя."""
     user = await auth_usecase.register(request.email, request.password)
     return user
 
 @router.post("/login", response_model=TokenResponse)
 async def login(request: OAuth2PasswordRequestForm = Depends(), auth_usecase: AuthUseCase = Depends(get_auth)) -> TokenResponse:
+    """Логин: возвращает JWT токен."""
     token = await auth_usecase.login(request.username, request.password)
     return token
 
 @router.get("/me", response_model=UserPublic)
 async def show_profile(user_id: int = Depends(get_current_user_id), auth_usecase: AuthUseCase = Depends(get_auth)) -> UserPublic:
+    """Возвращает профиль текущего пользователя."""
     user = await auth_usecase.user_by_id(user_id)
     return user

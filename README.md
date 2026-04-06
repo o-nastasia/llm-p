@@ -33,15 +33,15 @@ uv sync
 
 ### 3. Настроить переменные окружения
 
-Создать файл `.env`по примеру .env.example
+Создать файл `.env`по примеру .env.example и указать в нем свой реальный токен для `OPENROUTER_API_KEY`.
 
 ### 4. Запустить сервер
 
 ```bash
-uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uv run uvicorn app.main:app
 ```
 
-Swagger документация: `http://localhost:8000/docs`
+Swagger документация: `http://127.0.0.1:8000/docs`
 
 ## Эндпоинты
 

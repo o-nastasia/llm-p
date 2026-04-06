@@ -18,8 +18,16 @@
 
 ### 1. Клонировать репозиторий
 
+Через SSH (требуется настроенный ключ):
+
 ```bash
 git clone git@github.com:o-nastasia/llm-p.git
+cd llm-p
+```
+или через HTTPS:
+
+```bash
+git clone https://github.com/o-nastasia/llm-p.git
 cd llm-p
 ```
 
